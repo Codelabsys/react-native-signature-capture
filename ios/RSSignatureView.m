@@ -61,6 +61,10 @@
 						initWithFrame: CGRectMake(0, 0, 100, 100)
 						context: _context];
 		sign.manager = manager;
+        
+        __weak RSSignatureView* weaksSelf = self;
+        sign.onDrag = ^{ [weaksSelf.manager publishDraggedEventWithSignatureView:weaksSelf]; };
+        
 		
         [sign setTranslatesAutoresizingMaskIntoConstraints:NO];
 		[self addSubview:sign];
@@ -203,8 +207,12 @@
 		//UInt32 result = [attrs fileSize];
 		
 		NSString *base64Encoded = [imageData base64EncodedStringWithOptions:0];
-		[self.manager publishSaveImageEvent: tempPath withEncoded:base64Encoded];
+        [self.manager publishSaveImageEventWithSignatureView:self path:tempPath encoded:base64Encoded];
 	}
+}
+
+-(void) onDrag {
+    [self.manager publishDraggedEventWithSignatureView:self];
 }
 
 -(void) onClearButtonPressed {

@@ -2,6 +2,9 @@
 #import <React/RCTBridgeModule.h>
 #import <React/RCTBridge.h>
 #import <React/RCTEventDispatcher.h>
+#import <RCTUIManager.h>
+#import "RSSignatureView+OnSave.h"
+#import "RSSignatureView+OnStartDrag.h"
 
 @implementation RSSignatureViewManager
 
@@ -13,7 +16,8 @@ RCT_EXPORT_MODULE()
 RCT_EXPORT_VIEW_PROPERTY(rotateClockwise, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(square, BOOL)
 RCT_EXPORT_VIEW_PROPERTY(showNativeButtons, BOOL)
-
+RCT_EXPORT_VIEW_PROPERTY(onSave, RCTBubblingEventBlock)
+RCT_EXPORT_VIEW_PROPERTY(onStartDrag, RCTBubblingEventBlock)
 
 -(dispatch_queue_t) methodQueue
 {
@@ -31,29 +35,31 @@ RCT_EXPORT_VIEW_PROPERTY(showNativeButtons, BOOL)
 // UI can clear out the signature.
 RCT_EXPORT_METHOD(saveImage:(nonnull NSNumber *)reactTag) {
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[self.signView saveImage];
+        RSSignatureView * signView = (RSSignatureView*)[self.bridge.uiManager viewForReactTag:reactTag];
+        [signView saveImage];
 	});
 }
 
 RCT_EXPORT_METHOD(resetImage:(nonnull NSNumber *)reactTag) {
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[self.signView erase];
+        RSSignatureView * signView = (RSSignatureView*)[self.bridge.uiManager viewForReactTag:reactTag];
+        [signView erase];
 	});
 }
 
--(void) publishSaveImageEvent:(NSString *) aTempPath withEncoded: (NSString *) aEncoded {
-	[self.bridge.eventDispatcher
-	 sendDeviceEventWithName:@"onSaveEvent"
-	 body:@{
-					@"pathName": aTempPath,
-					@"encoded": aEncoded
-					}];
+-(void) publishSaveImageEventWithSignatureView:(RSSignatureView *)signView path:(NSString *) aTempPath encoded: (NSString *) aEncoded {
+    signView.onSave(@{
+                      @"pathName": aTempPath,
+                      @"encoded": aEncoded
+                      });
 }
 
--(void) publishDraggedEvent {
-	[self.bridge.eventDispatcher
-	 sendDeviceEventWithName:@"onDragEvent"
-	 body:@{@"dragged": @YES}];
+-(void) publishDraggedEventWithSignatureView:(RSSignatureView *)signView {
+    signView.onStartDrag(@{
+                           @"dragged": @YES
+                           });
 }
+
+
 
 @end

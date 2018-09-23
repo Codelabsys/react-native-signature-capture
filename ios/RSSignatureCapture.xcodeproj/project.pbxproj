@@ -10,6 +10,8 @@
 		0C53A9EE1B56134F004F2642 /* RSSignatureViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A9ED1B56134F004F2642 /* RSSignatureViewManager.m */; };
 		0C53A9F31B5613AF004F2642 /* PPSSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A9F01B5613AF004F2642 /* PPSSignatureView.m */; };
 		0C53A9F41B5613AF004F2642 /* RSSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C53A9F21B5613AF004F2642 /* RSSignatureView.m */; };
+		F1DF890621579B7800CAC77D /* RSSignatureView+OnStartDrag.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DF890521579B7800CAC77D /* RSSignatureView+OnStartDrag.m */; };
+		F1DF890921579C1C00CAC77D /* RSSignatureView+OnSave.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DF890821579C1C00CAC77D /* RSSignatureView+OnSave.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +34,10 @@
 		0C53A9F01B5613AF004F2642 /* PPSSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPSSignatureView.m; sourceTree = "<group>"; };
 		0C53A9F11B5613AF004F2642 /* RSSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSignatureView.h; sourceTree = "<group>"; };
 		0C53A9F21B5613AF004F2642 /* RSSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSignatureView.m; sourceTree = "<group>"; };
+		F1DF890421579B7800CAC77D /* RSSignatureView+OnStartDrag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSignatureView+OnStartDrag.h"; sourceTree = "<group>"; };
+		F1DF890521579B7800CAC77D /* RSSignatureView+OnStartDrag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RSSignatureView+OnStartDrag.m"; sourceTree = "<group>"; };
+		F1DF890721579C1C00CAC77D /* RSSignatureView+OnSave.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSignatureView+OnSave.h"; sourceTree = "<group>"; };
+		F1DF890821579C1C00CAC77D /* RSSignatureView+OnSave.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RSSignatureView+OnSave.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +58,10 @@
 				0C53A9F01B5613AF004F2642 /* PPSSignatureView.m */,
 				0C53A9F11B5613AF004F2642 /* RSSignatureView.h */,
 				0C53A9F21B5613AF004F2642 /* RSSignatureView.m */,
+				F1DF890721579C1C00CAC77D /* RSSignatureView+OnSave.h */,
+				F1DF890821579C1C00CAC77D /* RSSignatureView+OnSave.m */,
+				F1DF890421579B7800CAC77D /* RSSignatureView+OnStartDrag.h */,
+				F1DF890521579B7800CAC77D /* RSSignatureView+OnStartDrag.m */,
 				0C53A9EC1B56134F004F2642 /* RSSignatureViewManager.h */,
 				0C53A9ED1B56134F004F2642 /* RSSignatureViewManager.m */,
 				0C53A99F1B56113D004F2642 /* Products */,
@@ -122,8 +132,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1DF890921579C1C00CAC77D /* RSSignatureView+OnSave.m in Sources */,
 				0C53A9EE1B56134F004F2642 /* RSSignatureViewManager.m in Sources */,
 				0C53A9F41B5613AF004F2642 /* RSSignatureView.m in Sources */,
+				F1DF890621579B7800CAC77D /* RSSignatureView+OnStartDrag.m in Sources */,
 				0C53A9F31B5613AF004F2642 /* PPSSignatureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
