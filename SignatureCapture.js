@@ -16,12 +16,14 @@ class SignatureCapture extends React.Component {
     constructor() {
         super();
         this.onChange = this.onChange.bind(this);
+        this.onStartDrag = this.onStartDrag.bind(this);
+        this.onSave = this.onSave.bind(this);
         this.subscriptions = [];
     }
 
     onChange(event) {
 
-        if(event.nativeEvent.pathName){
+        if (event.nativeEvent.pathName) {
 
             if (!this.props.onSaveEvent) {
                 return;
@@ -32,7 +34,7 @@ class SignatureCapture extends React.Component {
             });
         }
 
-        if(event.nativeEvent.dragged){
+        if (event.nativeEvent.dragged) {
             if (!this.props.onDragEvent) {
                 return;
             }
@@ -65,9 +67,17 @@ class SignatureCapture extends React.Component {
         this.subscriptions = [];
     }
 
+    onStartDrag(event) {
+        this.props.onDragEvent(event)
+    }
+
+    onSave(event) {
+        this.props.onSaveEvent(event.nativeEvent)
+    }
+
     render() {
         return (
-            <RSSignatureView {...this.props} onChange={this.onChange} />
+            <RSSignatureView {...this.props} onChange={this.onChange} onStartDrag={this.onStartDrag} onSave={this.onSave} />
         );
     }
 
@@ -89,7 +99,7 @@ class SignatureCapture extends React.Component {
 }
 
 SignatureCapture.propTypes = {
-  ...View.propTypes,
+    ...View.propTypes,
     rotateClockwise: PropTypes.bool,
     square: PropTypes.bool,
     saveImageFileInExtStorage: PropTypes.bool,
@@ -97,11 +107,14 @@ SignatureCapture.propTypes = {
     showBorder: PropTypes.bool,
     showNativeButtons: PropTypes.bool,
     showTitleLabel: PropTypes.bool,
-    maxSize:PropTypes.number,
+    maxSize: PropTypes.number,
     minStrokeWidth: PropTypes.number,
     maxStrokeWidth: PropTypes.number,
     strokeColor: PropTypes.string,
-    backgroundColor: PropTypes.string
+    backgroundColor: PropTypes.string,
+    onStartDrag: PropTypes.func,
+    onSave: PropTypes.func,
+
 };
 
 var RSSignatureView = requireNativeComponent('RSSignatureView', SignatureCapture, {
